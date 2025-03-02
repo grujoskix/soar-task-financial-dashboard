@@ -2,6 +2,8 @@ import type { LayoutProps } from '@/types/page'
 import type { Viewport } from 'next'
 import { Inter, Lato } from 'next/font/google'
 import './globals.css'
+import { Header } from '@/shared/header/header'
+import { Sidebar } from '@/shared/sidebar/sidebar'
 import { cn } from '@/utils/className'
 
 const inter = Inter({
@@ -27,15 +29,21 @@ export const viewport: Viewport = {
 
 export default async function RootLayout({ children }: Readonly<LayoutProps>) {
   return (
-    <html lang='en'>
+    <html lang='en' className='overflow-hidden'>
       <body
         className={cn(
-          'relative min-h-dvh select-none overflow-hidden antialiased',
+          'relative flex min-h-dvh select-none overflow-hidden bg-white antialiased md:bg-[#F5F7FA]',
           inter.className,
           lato.className,
         )}
       >
-        {children}
+        <Sidebar />
+        <div className='flex h-dvh flex-1 flex-col'>
+          <Header />
+          <main className='no-scrollbar flex-1 overflow-y-auto overflow-x-hidden scroll-smooth p-6 md:p-10'>
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   )

@@ -8,7 +8,7 @@ type Props = PropsWithChildren<{
   width?: number
   height?: number
   stroke?: number
-  className?: string
+  classNames?: string
 }>
 
 export const Icon = ({
@@ -16,7 +16,7 @@ export const Icon = ({
   width = 25,
   height = 25,
   stroke = 0,
-  className,
+  classNames,
   children,
 }: Props) => (
   <svg
@@ -29,7 +29,7 @@ export const Icon = ({
     stroke='currentColor'
     viewBox={`0 0 ${width} ${height}`}
     xmlns='http://www.w3.org/2000/svg'
-    className={cn('shrink-0 transition-colors', className)}
+    className={cn('shrink-0 transition-colors', classNames)}
   >
     {children}
   </svg>
