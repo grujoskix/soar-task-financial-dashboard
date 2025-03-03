@@ -27,9 +27,9 @@ export const DashboardCard = ({ isActive }: Props) => (
           : 'bg-gradient-to-r from-[#5B5A6F] to-[#000000]',
       )}
     >
-      <div className='flex flex-col gap-6 p-6 md:gap-8'>
+      <div className='flex flex-col gap-4 p-4 md:gap-6 md:p-6'>
         <div className='flex items-center justify-between'>
-          <div className='flex flex-col'>
+          <div className='flex flex-col items-start'>
             <span
               className={cn(
                 'font-lato font-normal text-[11px] transition-colors md:text-xs',
@@ -56,7 +56,7 @@ export const DashboardCard = ({ isActive }: Props) => (
           />
         </div>
         <div className='flex items-center gap-12'>
-          <div className='flex flex-col'>
+          <div className='flex flex-col items-start'>
             <span
               className={cn(
                 'font-lato font-normal text-[11px] transition-colors md:text-xs',
@@ -74,7 +74,7 @@ export const DashboardCard = ({ isActive }: Props) => (
               Eddy Cusuma
             </strong>
           </div>
-          <div className='flex flex-col'>
+          <div className='flex flex-col items-start'>
             <span
               className={cn(
                 'font-lato font-normal text-[11px] transition-colors md:text-xs',
@@ -96,7 +96,7 @@ export const DashboardCard = ({ isActive }: Props) => (
       </div>
       <div
         className={cn(
-          'flex items-center justify-between p-6 transition-colors',
+          'flex items-center justify-between p-4 transition-colors md:p-6',
           !isActive
             ? 'border-[#DFEAF2] border-t bg-white'
             : 'bg-gradient-to-b from-[#FFFFFF]/15 to-[#FFFFFF]/0',
