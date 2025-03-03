@@ -7,6 +7,7 @@ import {
 import type { User } from '@/types/user'
 import { Activity } from './activity/activity'
 import { DashboardCards } from './dashboardCards/dashboardCards'
+import { History } from './history/history'
 import { Transactions } from './transactions/transactions'
 import { Transfer } from './transfer/transfer'
 
@@ -33,7 +34,9 @@ export const Dashboard = () => {
         <div className='flex flex-1'>
           <Transfer users={usersData} />
         </div>
-        <div className='flex flex-[2]'>6</div>
+        <div className='flex flex-[2]'>
+          <History transactions={[]} />
+        </div>
       </div>
     </div>
   )
