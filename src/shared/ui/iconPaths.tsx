@@ -306,7 +306,7 @@ export const ICON_PATHS: Record<string, ReactNode> = {
   // Transfer
   chevron_right: (
     <>
-      <path d='M1 1L7.5 7.5L1 14' stroke='currentColor' stroke-width='2' />
+      <path d='M1 1L7.5 7.5L1 14' stroke='currentColor' strokeWidth='2' />
     </>
   ),
   send: (

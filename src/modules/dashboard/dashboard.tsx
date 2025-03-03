@@ -4,9 +4,11 @@ import {
   TransactionPurpose,
   TransactionType,
 } from '@/types/transaction'
+import type { User } from '@/types/user'
 import { Activity } from './activity/activity'
 import { DashboardCards } from './dashboardCards/dashboardCards'
 import { Transactions } from './transactions/transactions'
+import { Transfer } from './transfer/transfer'
 
 export const Dashboard = () => {
   return (
@@ -28,12 +30,35 @@ export const Dashboard = () => {
       </div>
 
       <div className='flex flex-col gap-6 md:flex-row md:gap-8'>
-        <div className='flex flex-1'>5</div>
+        <div className='flex flex-1'>
+          <Transfer users={usersData} />
+        </div>
         <div className='flex flex-[2]'>6</div>
       </div>
     </div>
   )
 }
+
+const usersData: User[] = [
+  {
+    _id: '1',
+    avatar: 'livia',
+    name: 'Livia Bator',
+    position: 'CEO',
+  },
+  {
+    _id: '2',
+    avatar: 'randy',
+    name: 'Randy Press',
+    position: 'Director',
+  },
+  {
+    _id: '3',
+    avatar: 'workman',
+    name: 'Workman',
+    position: 'Designer',
+  },
+]
 
 const transactionsData: Transaction[] = [
   {
@@ -62,7 +87,7 @@ const transactionsData: Transaction[] = [
   },
 ]
 
-export const activityData: Transaction[] = [
+const activityData: Transaction[] = [
   // Saturday (March 4, 2023)
   {
     _id: '1',
