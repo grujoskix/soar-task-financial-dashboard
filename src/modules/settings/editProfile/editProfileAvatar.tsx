@@ -14,7 +14,6 @@ export const EditProfileAvatar = ({ avatar, setAvatar }: Props) => {
   const labelRef = useRef<HTMLLabelElement>(null)
 
   const handleUploadClick = useCallback(() => {
-    console.log('click')
     labelRef?.current?.click()
   }, [])
 

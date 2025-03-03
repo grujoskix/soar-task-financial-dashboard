@@ -2,7 +2,7 @@ import { Icon } from '@/shared/ui/icon'
 import { ICON_PATHS } from '@/shared/ui/iconPaths'
 import { type Transaction, TransactionType } from '@/types/transaction'
 import { cn } from '@/utils/className'
-import { formatCurrency } from '@/utils/formatCurrency'
+import { formatCurrency } from './transactionsUtils'
 
 type Props = {
   transaction: Transaction

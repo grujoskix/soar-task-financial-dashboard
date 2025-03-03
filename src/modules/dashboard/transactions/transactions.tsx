@@ -1,7 +1,7 @@
 import { Card } from '@/shared/ui/card'
 import { Subtitle } from '@/shared/ui/subtitle'
 import type { Transaction } from '@/types/transaction'
-import { TransactionItem } from './TransactionItem'
+import { TransactionItem } from './transactionItem'
 
 type Props = {
   transactions: Transaction[]
