@@ -16,7 +16,7 @@ export const SidebarNavLink = ({
   ...rest
 }: Props) => (
   <Link
-    href={href}
+    href={`/${href}`}
     {...rest}
     className={cn(
       'group relative flex h-[60px] items-center gap-[26px] pl-10 outline-none',

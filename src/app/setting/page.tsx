@@ -4,12 +4,7 @@ import type { NextPage } from 'next'
 
 export const dynamic = 'force-dynamic'
 
-const Page: NextPage<PageProps> = async ({ params }: Readonly<PageProps>) => {
-  const { uid } = params
-
-  console.log('Settings Page')
-  console.log(uid)
-
+const Page: NextPage<PageProps> = async () => {
   return <Settings />
 }
 
