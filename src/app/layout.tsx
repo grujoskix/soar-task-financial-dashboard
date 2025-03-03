@@ -32,7 +32,7 @@ export default async function RootLayout({ children }: Readonly<LayoutProps>) {
     <html lang='en' className='overflow-hidden'>
       <body
         className={cn(
-          'relative flex min-h-dvh select-none overflow-hidden bg-white antialiased md:bg-[#F5F7FA]',
+          'relative flex min-h-dvh select-none overflow-hidden bg-[#F5F7FA] antialiased',
           inter.className,
           lato.className,
         )}

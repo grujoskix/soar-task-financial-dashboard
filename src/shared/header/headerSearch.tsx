@@ -18,7 +18,7 @@ export const HeaderSearch = () => (
       type='text'
       id='search'
       placeholder='Search for something'
-      className='h-10 w-full rounded-[40px] bg-[#F5F7FA] pr-[20px] pl-[46px] font-inter font-normal text-[#8BA3CB] text-[13px] outline-none md:h-[50px] md:pr-[25px] md:pl-[60px] md:text-base'
+      className='h-10 w-full rounded-[40px] bg-[#F5F7FA] pr-[20px] pl-[46px] font-inter font-normal text-[#8BA3CB] text-sm outline-none md:h-[50px] md:pr-[25px] md:pl-[60px] md:text-base'
     />
   </label>
 )
