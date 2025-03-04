@@ -1,8 +1,8 @@
-import Image from 'next/image'
 import { CircleIconBtn } from '../ui/circleIconBtn'
 import { Icon } from '../ui/icon'
 import { ICON_PATHS } from '../ui/iconPaths'
 import { Title } from '../ui/title'
+import { HeaderAvatar } from './headerAvatar'
 import { HeaderHamburger } from './headerHamburger'
 import { HeaderSearch } from './headerSearch'
 
@@ -32,14 +32,7 @@ export const Header = () => (
         </Icon>
       </CircleIconBtn>
 
-      <Image
-        src={'/images/user-avatar.png'}
-        width={60}
-        height={60}
-        alt='Avatar'
-        title=''
-        className='order-1 h-9 w-9 cursor-pointer rounded-full transition-transform active:scale-90 md:order-4 md:h-[60px] md:w-[60px]'
-      />
+      <HeaderAvatar />
     </div>
   </header>
 )

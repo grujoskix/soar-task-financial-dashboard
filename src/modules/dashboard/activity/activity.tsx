@@ -1,18 +1,19 @@
 'use client'
 
+import { useCards } from '@/context/CardContext'
 import { Card } from '@/shared/ui/card'
 import { Subtitle } from '@/shared/ui/subtitle'
-import { type Transaction, TransactionActivity } from '@/types/transaction'
+import { TransactionActivity } from '@/types/transaction'
 import { cn } from '@/utils/className'
 import { motion } from 'framer-motion'
 import { calculateBalances, generateSteps, getBarHeight } from './activityUtils'
 
-type Props = {
-  transactions: Transaction[]
-}
+export const Activity = () => {
+  const { cards, activeCardIdx } = useCards()
+  const transactions = cards[activeCardIdx]?.transactions || []
 
-export const Activity = ({ transactions }: Props) => {
   const { maxBalance, dailyBalances } = calculateBalances(transactions)
+
   const balanceSteps = generateSteps(maxBalance)
 
   return (

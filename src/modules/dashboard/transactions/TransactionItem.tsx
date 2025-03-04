@@ -1,11 +1,11 @@
 import { Icon } from '@/shared/ui/icon'
 import { ICON_PATHS } from '@/shared/ui/iconPaths'
-import { type Transaction, TransactionType } from '@/types/transaction'
+import { type BankCardTransaction, TransactionType } from '@/types/transaction'
 import { cn } from '@/utils/className'
-import { formatCurrency } from './transactionsUtils'
+import { formatCurrency } from '@/utils/formatCurrency'
 
 type Props = {
-  transaction: Transaction
+  transaction: BankCardTransaction
 }
 
 export const TransactionItem = ({ transaction }: Props) => {
@@ -20,21 +20,21 @@ export const TransactionItem = ({ transaction }: Props) => {
       <div
         className={cn(
           'flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-full md:h-[55px] md:w-[55px]',
-          TRANSACTION_COLOR[transaction.type],
+          TRANSACTION_COLOR[transaction.activity],
         )}
       >
         <Icon
           label={transaction.type}
           width={28}
           height={28}
-          classNames={TRANSACTION_ICON_COLOR[transaction.type]}
+          classNames={TRANSACTION_ICON_COLOR[transaction.activity]}
         >
-          {ICON_PATHS[transaction.type]}
+          {ICON_PATHS[transaction.activity]}
         </Icon>
       </div>
       <div className='grid w-full grid-cols-1 gap-0.5 md:gap-1'>
         <h3 className='truncate font-inter font-medium text-[#232323] text-sm md:text-base'>
-          {TRANSACTION_NAME[transaction.type]}
+          {TRANSACTION_NAME[transaction.activity]}
         </h3>
         <span className='font-lato font-normal text-[#718EBF] text-xs transition-colors md:text-[15px]'>
           {formattedDate}

@@ -2,6 +2,7 @@ import type { LayoutProps } from '@/types/page'
 import type { Viewport } from 'next'
 import { Inter, Lato } from 'next/font/google'
 import './globals.css'
+import { GlobalProvider } from '@/context/GlobalProvider'
 import { Header } from '@/shared/header/header'
 import { Sidebar } from '@/shared/sidebar/sidebar'
 import { cn } from '@/utils/className'
@@ -37,13 +38,15 @@ export default async function RootLayout({ children }: Readonly<LayoutProps>) {
           lato.className,
         )}
       >
-        <Sidebar />
-        <div className='flex h-dvh flex-1 flex-col'>
-          <Header />
-          <main className='no-scrollbar flex-1 overflow-y-auto overflow-x-hidden scroll-smooth p-6 md:p-10'>
-            {children}
-          </main>
-        </div>
+        <GlobalProvider>
+          <Sidebar />
+          <div className='flex h-dvh flex-1 flex-col'>
+            <Header />
+            <main className='no-scrollbar flex-1 overflow-y-auto overflow-x-hidden scroll-smooth p-6 md:p-10'>
+              {children}
+            </main>
+          </div>
+        </GlobalProvider>
       </body>
     </html>
   )

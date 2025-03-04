@@ -1,5 +1,7 @@
 'use client'
 
+import { useAuth } from '@/context/AuthContext'
+import { useCards } from '@/context/CardContext'
 import { Subtitle } from '@/shared/ui/subtitle'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
@@ -7,8 +9,9 @@ import { DashboardCard } from './dashboardCard'
 
 export const DashboardCards = () => {
   const [showCards, setShowCards] = useState<boolean>(false)
+  const { cards, activeCardIdx, setActiveCardIdx } = useCards()
+  const { user } = useAuth()
 
-  const cards = [...new Array(3)]
   const displayedCards = showCards ? cards : cards.slice(0, 2)
 
   return (
@@ -28,16 +31,20 @@ export const DashboardCards = () => {
 
       <motion.div className='grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8'>
         <AnimatePresence>
-          {displayedCards.map((_, index) => (
+          {displayedCards.map((card, i) => (
             <motion.div
-              // biome-ignore lint/suspicious/noArrayIndexKey: Use _id later
-              key={index}
+              key={card._id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <DashboardCard isActive={index === 0} />
+              <DashboardCard
+                card={card}
+                cardHolder={user?.name ?? ''}
+                isActive={i === activeCardIdx}
+                onClick={() => setActiveCardIdx(i)}
+              />
             </motion.div>
           ))}
         </AnimatePresence>

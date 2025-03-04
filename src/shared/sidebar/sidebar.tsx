@@ -5,7 +5,7 @@ export const Sidebar = () => {
   const activePath = 'dashboard'
 
   return (
-    <aside className='-left-[250px] fixed top-0 z-10 h-dvh w-full max-w-[250px] bg-white md:relative md:left-0 md:border-[#E6EFF5] md:border-r'>
+    <aside className='-left-[250px] fixed top-0 z-10 h-dvh w-full min-w-[250px] max-w-[250px] bg-white md:relative md:left-0 md:border-[#E6EFF5] md:border-r'>
       <SidebarBrand />
 
       <nav className='mt-3 flex flex-col gap-1'>

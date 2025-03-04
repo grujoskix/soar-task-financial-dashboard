@@ -1,7 +1,8 @@
+import { useAuth } from '@/context/AuthContext'
 import { DatePicker } from '@/shared/datePicker'
 import { InputField } from '@/shared/inputField'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { EditProfileAvatar } from './editProfileAvatar'
 import {
@@ -9,13 +10,9 @@ import {
   profileFormSchema,
 } from './editProfileFormSchema'
 
-type Props = {
-  user?: ProfileFormSchema
-  // TODO: Use user profile returned to edit
-  // user?: ProfileToEditResponse
-}
+export const EditProfileForm = () => {
+  const { user, updateUser } = useAuth()
 
-export const EditProfileForm = ({ user }: Props) => {
   const {
     register,
     handleSubmit,
@@ -25,17 +22,17 @@ export const EditProfileForm = ({ user }: Props) => {
   } = useForm<ProfileFormSchema>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
-      avatar: user?.avatar ?? null,
-      name: user?.name ?? '',
-      username: user?.username ?? '',
-      email: user?.email ?? '',
-      password: user?.password ?? '',
-      birth_date: user?.birth_date ?? null,
-      address_present: user?.address_present ?? '',
-      address_permanent: user?.address_permanent ?? '',
-      city: user?.city ?? '',
-      country: user?.country ?? '',
-      code: user?.code ?? '',
+      avatar: null, // Set initial empty values
+      name: '',
+      username: '',
+      email: '',
+      password: '',
+      birth_date: null,
+      address_present: '',
+      address_permanent: '',
+      city: '',
+      country: '',
+      code: '',
     },
     mode: 'onSubmit',
   })
@@ -43,16 +40,25 @@ export const EditProfileForm = ({ user }: Props) => {
   const avatar = watch('avatar')
   const birthDate = watch('birth_date')
 
+  // Update form values when user changes
+  useEffect(() => {
+    if (user) {
+      setValue('avatar', user.avatar ?? null)
+      setValue('name', user.name ?? '')
+      setValue('username', user.username ?? '')
+      setValue('email', user.email ?? '')
+      setValue('password', user.password ?? '')
+      setValue('birth_date', user.birth_date ?? null)
+      setValue('address_present', user.address_present ?? '')
+      setValue('address_permanent', user.address_permanent ?? '')
+      setValue('city', user.city ?? '')
+      setValue('country', user.country ?? '')
+      setValue('code', user.code ?? '')
+    }
+  }, [user, setValue]) // Runs whenever `user` changes
+
   const onSubmit = async (formData: ProfileFormSchema) => {
-    console.log(formData)
-
-    // TODO: Proceed with API call & error handling
-    // const { error } = await actionUpdateProfile(uid, formData)
-
-    // if (error) {
-    //   console.log(error.message)
-    //   return
-    // }
+    updateUser(formData)
   }
 
   const handleSetAvatar = useCallback(

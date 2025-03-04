@@ -1,24 +1,27 @@
 'use client'
 
+import { useAuth } from '@/context/AuthContext'
 import { Card } from '@/shared/ui/card'
 import { CircleIconBtn } from '@/shared/ui/circleIconBtn'
 import { Icon } from '@/shared/ui/icon'
 import { Subtitle } from '@/shared/ui/subtitle'
-import type { User } from '@/types/user'
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { TransferForm } from './transferForm'
 import { TransferPerson } from './transferPerson'
 
-type Props = {
-  users: User[]
-}
+export const Transfer = () => {
+  const [activeUID, setActiveUID] = useState<string>()
 
-export const Transfer = ({ users }: Props) => {
-  const [activeUID, setActiveUID] = useState<string>(users[0]._id)
+  const { people } = useAuth()
 
-  const handleSetActiveUID = (uid: string) => {
+  useEffect(() => {
+    if (people.length === 0) return
+    setActiveUID(people[0]._id)
+  }, [people])
+
+  const handleSetActiveUID = useCallback((uid: string) => {
     setActiveUID(uid)
-  }
+  }, [])
 
   return (
     <div className='flex flex-1 flex-col gap-6 md:gap-8'>
@@ -26,11 +29,11 @@ export const Transfer = ({ users }: Props) => {
       <Card classNames='flex flex-col gap-5 md:gap-8'>
         <div className='flex items-center gap-5 md:gap-6'>
           <div className='flex flex-1 gap-5 md:gap-6'>
-            {users.map((user) => (
+            {people.map((person) => (
               <TransferPerson
-                key={user._id}
-                user={user}
-                isActive={user._id === activeUID}
+                key={person._id}
+                user={person}
+                isActive={person._id === activeUID}
                 setActiveUserID={handleSetActiveUID}
               />
             ))}
@@ -54,7 +57,7 @@ export const Transfer = ({ users }: Props) => {
           <span className='text-nowrap font-inter font-normal text-[#718EBF] text-xs md:text-base'>
             Write Amount
           </span>
-          <TransferForm uid={activeUID} />
+          <TransferForm />
         </div>
       </Card>
     </div>

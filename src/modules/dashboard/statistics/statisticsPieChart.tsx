@@ -1,9 +1,10 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import type { Statistics } from './statisticsTypes'
 
-const options = {
-  series: [30, 26, 35, 28],
+const baseOptions = {
+  series: [] as number[],
   chart: {
     width: '100%',
     type: 'polarArea',
@@ -43,8 +44,14 @@ const options = {
   },
 }
 
-export const StatisticsPieChart = () => {
+type Props = {
+  statistics: Statistics[]
+}
+
+export const StatisticsPieChart = ({ statistics }: Props) => {
   const chartRef = useRef<HTMLDivElement>(null)
+  // biome-ignore lint/suspicious/noExplicitAny: Not sure what type is it atm..
+  const chartInstance = useRef<any>(null)
 
   useEffect(() => {
     if (chartRef.current && typeof window !== 'undefined') {
@@ -56,11 +63,21 @@ export const StatisticsPieChart = () => {
         if (charts.length > 0) return
 
         const ApexCharts = ApexChartsModule.default
-        const chart = new ApexCharts(chartRef.current, options)
-        chart.render()
+        chartInstance.current = new ApexCharts(chartRef.current, {
+          ...baseOptions,
+          series: statistics.map((stat) => stat.value / 100),
+        })
+        chartInstance.current.render()
       })
     }
-  }, [])
+  }, [statistics])
+
+  useEffect(() => {
+    if (chartInstance.current) {
+      const newSeries = statistics.map((stat) => stat.value / 100)
+      chartInstance.current.updateSeries(newSeries)
+    }
+  }, [statistics])
 
   return (
     <div className='statistics h-full w-full'>

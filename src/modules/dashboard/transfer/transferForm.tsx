@@ -1,4 +1,6 @@
 'use client'
+
+import { useCards } from '@/context/CardContext'
 import { InputFieldBalance } from '@/shared/inputFieldBalance'
 import { Icon } from '@/shared/ui/icon'
 import { ICON_PATHS } from '@/shared/ui/iconPaths'
@@ -9,11 +11,9 @@ import {
   transferFormSchema,
 } from './transferFormSchema'
 
-type Props = {
-  uid: string
-}
+export const TransferForm = () => {
+  const { activeCardIdx, updateCardBalance } = useCards()
 
-export const TransferForm = ({ uid }: Props) => {
   const {
     register,
     handleSubmit,
@@ -24,15 +24,7 @@ export const TransferForm = ({ uid }: Props) => {
   })
 
   const onSubmit = async (formData: TransferFormSchema) => {
-    console.log(uid, formData)
-
-    // TODO: Proceed with API call & error handling
-    // const { error } = await actionSendMoney(uid, formData)
-
-    // if (error) {
-    //   console.log(error.message)
-    //   return
-    // }
+    updateCardBalance(activeCardIdx, Number(formData.balance))
   }
 
   return (

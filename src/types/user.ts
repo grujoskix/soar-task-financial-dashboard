@@ -2,10 +2,10 @@ export type User = {
   _id: string
   avatar?: string | null
   name: string
-  username?: string
-  email?: string
+  username: string
+  position: string
+  email: string
   password?: string
-  position?: string
   birth_date?: Date | null
   address_present?: string
   address_permanent?: string

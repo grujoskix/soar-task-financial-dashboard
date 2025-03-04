@@ -24,3 +24,32 @@ export type Transaction = {
   purpose: TransactionPurpose
   balance: number
 }
+
+///
+
+export enum BankCardTransactionActivity {
+  deposit_from = 'deposit_from',
+  deposit_paypal = 'deposit_paypal',
+  deposit_person = 'deposit_person',
+}
+
+export enum BankCardTransactionPurpose {
+  entertainment = 'entertainment',
+  bill_expense = 'bill_expense',
+  investment = 'investment',
+  others = 'others',
+}
+
+export enum BankCardTransactionType {
+  deposit = 'deposit',
+  withdraw = 'withdraw',
+}
+
+export type BankCardTransaction = {
+  _id?: string
+  date: Date
+  type: BankCardTransactionType
+  activity: BankCardTransactionActivity
+  purpose: BankCardTransactionPurpose
+  balance: number
+}

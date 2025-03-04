@@ -47,13 +47,22 @@ export const EditProfileAvatar = ({ avatar, setAvatar }: Props) => {
     </label>
   )
 
+  const avatarPlaceholder = () => {
+    if (!avatar) return '/images/people/default.png'
+
+    if (avatar.startsWith('data:image')) return avatar
+
+    return `/images/people/${avatar}.png`
+  }
+
   const avatarPreview = (
     <Image
-      src={avatar ?? ''}
+      src={avatarPlaceholder()}
       width={100}
       height={100}
       alt='avatar'
       className='h-full w-full object-cover'
+      priority
     />
   )
 

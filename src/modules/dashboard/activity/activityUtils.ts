@@ -1,4 +1,7 @@
-import { type Transaction, TransactionActivity } from '@/types/transaction'
+import {
+  type BankCardTransaction,
+  BankCardTransactionType,
+} from '@/types/transaction'
 
 export type DailyBalance = {
   deposit: number
@@ -7,7 +10,7 @@ export type DailyBalance = {
 
 export type DailyBalances = Record<number, DailyBalance>
 
-export const calculateBalances = (transactions: Transaction[]) => {
+export const calculateBalances = (transactions: BankCardTransaction[]) => {
   let maxAbs = 0
 
   const dailyBalances: DailyBalances = {
@@ -29,9 +32,9 @@ export const calculateBalances = (transactions: Transaction[]) => {
 
     const day = new Date(tx.date).getDay()
 
-    if (tx.activity === TransactionActivity.deposit) {
+    if (tx.type === BankCardTransactionType.deposit) {
       dailyBalances[day].deposit += tx.balance
-    } else if (tx.activity === TransactionActivity.withdraw) {
+    } else if (tx.type === BankCardTransactionType.withdraw) {
       dailyBalances[day].withdraw += Math.abs(tx.balance)
     }
   }
