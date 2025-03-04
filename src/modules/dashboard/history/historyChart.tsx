@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react'
 const options = {
   chart: {
     height: '100%',
-    maxWidth: '100%',
+    width: '100%',
     type: 'area',
     fontFamily: 'Inter, sans-serif',
 
@@ -35,7 +35,7 @@ const options = {
     enabled: false,
   },
   stroke: {
-    width: 6,
+    width: 3,
   },
   grid: {
     show: true,
@@ -91,7 +91,7 @@ export const HistoryChart = () => {
   useEffect(() => {
     if (chartRef.current && typeof window !== 'undefined') {
       import('apexcharts').then((ApexChartsModule) => {
-        const charts = document.querySelectorAll('.apexcharts-canvas')
+        const charts = document.querySelectorAll('.history .apexcharts-canvas')
 
         if (charts.length > 0) return
 
@@ -102,5 +102,9 @@ export const HistoryChart = () => {
     }
   }, [])
 
-  return <div ref={chartRef} />
+  return (
+    <div className='history h-full w-full'>
+      <div ref={chartRef} />
+    </div>
+  )
 }

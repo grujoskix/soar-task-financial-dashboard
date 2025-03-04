@@ -8,6 +8,7 @@ import type { User } from '@/types/user'
 import { Activity } from './activity/activity'
 import { DashboardCards } from './dashboardCards/dashboardCards'
 import { History } from './history/history'
+import { Statistics } from './statistics/statistics'
 import { Transactions } from './transactions/transactions'
 import { Transfer } from './transfer/transfer'
 
@@ -27,7 +28,9 @@ export const Dashboard = () => {
         <div className='flex flex-[2]'>
           <Activity transactions={activityData} />
         </div>
-        <div className='flex flex-1'>4</div>
+        <div className='flex flex-1'>
+          <Statistics transactions={activityData} />
+        </div>
       </div>
 
       <div className='flex flex-col gap-6 md:flex-row md:gap-8'>
