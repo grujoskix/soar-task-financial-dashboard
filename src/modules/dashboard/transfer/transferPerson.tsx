@@ -19,15 +19,15 @@ export const TransferPerson = ({ user, isActive, setActiveUserID }: Props) => {
     <button
       type='button'
       onClick={handleSetActiveUID}
-      className='group flex flex-col items-center gap-3 md:gap-3'
+      className='flex flex-col items-center gap-3 md:gap-3'
     >
-      <div className='h-[50px] w-[50px] shrink-0 overflow-hidden rounded-full md:h-[70px] md:w-[70px]'>
+      <div className='h-[50px] w-[50px] shrink-0 overflow-hidden rounded-full transition-transform hover:scale-105 active:scale-100 md:h-[70px] md:w-[70px]'>
         <Image
           src={user.avatar ? `/images/people/${user.avatar}.png` : ''}
           width={70}
           height={70}
           alt={user.name}
-          className='h-full w-full object-cover transition-transform group-active:scale-95'
+          className='h-full w-full object-cover'
         />
       </div>
       <div

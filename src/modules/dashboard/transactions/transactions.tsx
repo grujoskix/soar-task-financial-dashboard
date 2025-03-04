@@ -7,12 +7,12 @@ import { TransactionItem } from './transactionItem'
 
 export const Transactions = () => {
   const { cards, activeCardIdx } = useCards()
-  const transactions = cards[activeCardIdx]?.transactions || []
+  const transactions = cards[activeCardIdx]?.transactions.slice(0, 3) || []
 
   return (
     <div className='flex flex-1 flex-col gap-6 md:gap-8'>
       <Subtitle>Recent Transaction</Subtitle>
-      <Card classNames='overflow-x-hidden overflow-y-auto no-scrollbar scroll-smooth max-h-[251px]'>
+      <Card classNames='overflow-x-hidden overflow-y-auto no-scrollbar scroll-smooth'>
         <div className='flex flex-1 flex-col gap-3'>
           {transactions
             .map((trans) => (

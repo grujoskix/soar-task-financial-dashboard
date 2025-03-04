@@ -1,3 +1,5 @@
+'use client'
+
 import { cn } from '@/utils/className'
 import Link from 'next/link'
 import type { AnchorHTMLAttributes } from 'react'
